@@ -4,7 +4,7 @@ import { Paper, Typography, useMediaQuery } from "@material-ui/core";
 import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import Rating from "@material-ui/lab/Rating";
 
-import useStyles from "./styles.js";
+import useStyles from "./styles";
 
 const Map = () => {
   const matches = useMediaQuery("(min-width:600px)");
@@ -13,7 +13,7 @@ const Map = () => {
   return (
     <div className={classes.mapContainer}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "API_KEY" }}
+        bootstrapURLKeys={{ key: API_URL }}
         defaultCenter={coordinates}
         center={coordinates}
         defaultZoom={14}

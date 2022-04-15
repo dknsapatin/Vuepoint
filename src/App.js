@@ -1,14 +1,19 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from "react";
 import { CssBaseline, Grid } from "@material-ui/core";
 import Header from "./components/Header/Header";
 import List from "./components/List/List";
 import Map from "./components/Map/Map";
 import PlaceDetails from "./components/PlaceDetails/PlaceDetails";
 
-const Container = styled.div``;
-
+import { getPlacesData } from "./API/index";
 const App = () => {
+  const [places, setPlaces] = useState([]);
+  useEffect(() => {
+    getPlacesData().then((data) => {
+      setPlaces(data);
+    });
+  });
+
   return (
     <>
       <CssBaseline />

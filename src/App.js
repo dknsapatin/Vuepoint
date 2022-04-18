@@ -10,14 +10,15 @@ import { getPlacesData } from "./API/index";
 
 const App = () => {
   const [places, setPlaces] = useState([]);
-  const [coordinates, setCoordinates] = useState({});
-  const [bounds, setBounds] = useState(null);
+
+  const [coords, setCoords] = useState({});
+  const [bounds, setBounds] = useState({});
 
   // Call back function to set the current location to our own lat | lng coordinates
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
-        setCoordinates({ lat: latitude, lng: longitude });
+        setCoords({ lat: latitude, lng: longitude });
       }
     );
   }, []);
@@ -27,7 +28,7 @@ const App = () => {
     getPlacesData(bounds.sw, bounds.ne).then((data) => {
       setPlaces(data);
     });
-  }, [coordinates, bounds]);
+  }, [coords, bounds]);
 
   return (
     <>
@@ -38,15 +39,11 @@ const App = () => {
         {/* ----------------------------------------------------------- */}
         {/* Only take 4 out of 12 spaces on medium or larger devices */}
         <Grid item xs={12} md={4}>
-          <List />
+          <List places={places} />
         </Grid>
         {/* ----------------------------------------------------------- */}
         <Grid item xs={12} md={8}>
-          <Map
-            setCoordinates={setCoordinates}
-            setbounds={setBounds}
-            coordinates={coordinates}
-          />
+          <Map setCoords={setCoords} setbounds={setBounds} coords={coords} />
         </Grid>
         {/* ----------------------------------------------------------- */}
       </Grid>

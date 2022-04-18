@@ -6,7 +6,7 @@ import Rating from "@material-ui/lab/Rating";
 
 import useStyles from "./styles";
 
-const Map = ({ setCoordinates, setBounds, coordinates }) => {
+const Map = ({ setCoords, setBounds, coords }) => {
   const matches = useMediaQuery("(min-width:600px)");
   const classes = useStyles();
 
@@ -14,13 +14,13 @@ const Map = ({ setCoordinates, setBounds, coordinates }) => {
     <div className={classes.mapContainer}>
       <GoogleMapReact
         // bootstrapURLKeys={{ key: "GET from google cloud api" }}
-        defaultCenter={coordinates}
-        center={coordinates}
+        defaultCenter={coords}
+        center={coords}
         defaultZoom={14}
         margin={[50, 50, 50, 50]}
         options={""}
         onChange={(e) => {
-          setCoordinates({ lat: e.center.lat, lng: e.center.lng });
+          setCoords({ lat: e.center.lat, lng: e.center.lng });
           setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
         }}
         onChildClick={""}

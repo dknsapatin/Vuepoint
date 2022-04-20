@@ -1,9 +1,6 @@
-// Header styles
-
 import { alpha, makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
-  typography: { fontFamily: ["Comfortaa light"].join(",") },
   title: {
     display: "none",
     [theme.breakpoints.up("sm")]: {
